@@ -1,8 +1,19 @@
 module.exports = {
   purge: ["./public/**/*.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: "class", // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        prudent: {
+          100: "#2B3945",
+          200: "#202C37",
+        },
+        little: {
+          100: "#FFFFFF",
+          200: "#FAFAFA",
+        },
+      },
+    },
   },
   variants: {
     extend: {},
