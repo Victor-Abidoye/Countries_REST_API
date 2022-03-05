@@ -1,18 +1,18 @@
 <template>
   <input
     type="text"
-    :value="modalValue"
+    :value="modelValue"
     placeholder="Search a country"
-    class="bg-prudent-100 w-full h-10 px-8 py-6 text-white md:w-1/4"
-    @input="$emit('update:modalValue', $event.target.value)"
+    class="bg-little-100 shadow-md rounded-md dark:bg-prudent-100 w-full h-10 px-8 py-6 dark:text-white md:w-1/4 focus:outline-none"
+    @input="$emit('update:modelValue', $event.target.value)"
   />
 </template>
 
 <script>
 export default {
   name: "CustomInput",
-  props: ["modalValue"],
-  emits: ["update:modalValue"],
+  props: ["modelValue"],
+  emits: ["update:modelValue"],
 };
 </script>
 

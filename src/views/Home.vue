@@ -1,12 +1,12 @@
 <template>
   <div class="p-5 bg-little-200 dark:bg-prudent-200 md:flex md:justify-between">
     <CustomInput
-      :modelValue="countries"
-      @update:modalValue="(searchCountry) => (countries = searchCountry)"
+      :modelValue="country"
+      @update:modelValue="(searchCountry) => (country = searchCountry)"
     />
     <CustomSelect
-      :modalValue="country"
-      @update:modalValue="(newCountry) => (countries = newCountry)"
+      :modelValue="continent"
+      @update:modelValue="(searchContinent) => (continent = searchContinent)"
     />
   </div>
 </template>
@@ -25,6 +25,7 @@ export default {
   data() {
     return {
       country: "",
+      continent: "",
     };
   },
 };
