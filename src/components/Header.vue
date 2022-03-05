@@ -1,7 +1,9 @@
 <template>
   <div class="flex justify-between p-5 bg-little-100 dark:bg-prudent-100">
-    <h1 class="text-rose-700">Where in the World?</h1>
-    <p @click="toggleMode"><i class="fa-light fa-moon"></i> Dark Mode</p>
+    <h1 class="text-little-100">Where in the World?</h1>
+    <p @click="toggleMode" class="text-little-100">
+      <i class="fa-light fa-moon"></i> Dark Mode
+    </p>
   </div>
 </template>
 

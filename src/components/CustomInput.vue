@@ -1,9 +1,9 @@
 <template>
   <input
     type="text"
-    :vlaue="modalValue"
+    :value="modalValue"
     placeholder="Search a country"
-    class="bg-prudent-100 w-full h-10 p-3 text-white"
+    class="bg-prudent-100 w-full h-10 px-8 py-6 text-white md:w-1/4"
     @input="$emit('update:modalValue', $event.target.value)"
   />
 </template>
