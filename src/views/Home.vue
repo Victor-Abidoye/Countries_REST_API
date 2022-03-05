@@ -6,11 +6,12 @@
         @update:modelValue="(searchCountry) => (country = searchCountry)"
       />
       <CustomSelect
+        :regions="regions"
         :modelValue="continent"
         @update:modelValue="(searchContinent) => (continent = searchContinent)"
       />
     </div>
-    <Countries />
+    <Countries :countries="countries" />
   </div>
 </template>
 
@@ -31,8 +32,23 @@ export default {
     Countries;
     return {
       country: "",
+      countries: [],
       continent: "",
     };
+  },
+  async created() {
+    let data = await fetch("https://restcountries.com/v2/all");
+    let countries = await data.json();
+    this.countries = countries;
+  },
+  computed: {
+    regions: function () {
+      let set1 = new Set();
+      for (let i in this.countries) {
+        set1.add(this.countries[i].region);
+      }
+      return set1;
+    },
   },
 };
 </script>
