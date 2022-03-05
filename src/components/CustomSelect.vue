@@ -16,7 +16,7 @@
 export default {
   data() {
     return {
-      continents: ["Filter by Region", "Africa", "Asia", "Europe"],
+      continents: ["Africa", "Asia", "Europe"],
     };
   },
   props: ["modelValue"],
