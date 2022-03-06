@@ -1,10 +1,7 @@
 <template>
   <div class="p-5 bg-little-200 dark:bg-prudent-200">
     <div class="md:flex md:justify-between">
-      <CustomInput
-        :modelValue="country"
-        @update:modelValue="(searchCountry) => (country = searchCountry)"
-      />
+      <CustomInput :modelValue="country" @update:modelValue="searched" />
       <CustomSelect
         :regions="regions"
         :modelValue="continent"
@@ -48,6 +45,21 @@ export default {
         set1.add(this.countries[i].region);
       }
       return set1;
+    },
+  },
+  methods: {
+    async searched(inn) {
+      let token = "";
+      !inn
+        ? (token = "https://restcountries.com/v2/all")
+        : (token = `https://restcountries.com/v2/name/${inn}`);
+      try {
+        let data = await fetch(token);
+        let res = await data.json();
+        this.countries = res;
+      } catch (err) {
+        console.log(err);
+      }
     },
   },
 };

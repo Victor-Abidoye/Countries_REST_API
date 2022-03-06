@@ -4,7 +4,7 @@
     id=""
     :value="modelValue"
     @input="$emit('update:modelValue', $event.target.value)"
-    class="md:my-12 w-3/5 bg-little-100 shadow-md rounded-md dark:bg-prudent-100 mb-0 mt-8 py-3 px-4 dark:text-white md:w-1/5 md:m-0 focus:outline-none"
+    class="md:mb-12 w-3/5 bg-little-100 shadow-md rounded-md dark:bg-prudent-100 mb-0 mt-8 py-3 px-4 dark:text-white md:w-1/5 md:m-0 focus:outline-none"
   >
     <option v-for="continent in regions" :key="continent" :value="continent">
       {{ continent }}
