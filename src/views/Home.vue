@@ -5,7 +5,7 @@
       <CustomSelect
         :regions="regions"
         :modelValue="continent"
-        @update:modelValue="(searchContinent) => (continent = searchContinent)"
+        @update:modelValue="searchedRegion"
       />
     </div>
     <Countries :countries="countries" />
@@ -31,18 +31,21 @@ export default {
       country: "",
       countries: [],
       continent: "",
+      countries_perm: [],
     };
   },
   async created() {
     let data = await fetch("https://restcountries.com/v2/all");
     let countries = await data.json();
     this.countries = countries;
+    this.countries_perm = countries
   },
   computed: {
     regions: function () {
       let set1 = new Set();
-      for (let i in this.countries) {
-        set1.add(this.countries[i].region);
+      set1.add("All Region");
+      for (let i in this.countries_perm) {
+        set1.add(this.countries_perm[i].region);
       }
       return set1;
     },
@@ -59,6 +62,16 @@ export default {
         this.countries = res;
       } catch (err) {
         console.log(err);
+      }
+    },
+    searchedRegion(reg) {
+      let res = this.countries_perm;
+      if (reg == "All Region") {
+        this.countries = res;
+      } else {
+        this.countries = res.filter((curr) => {
+          return curr.region == reg;
+        });
       }
     },
   },
