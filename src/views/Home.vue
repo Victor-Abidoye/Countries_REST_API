@@ -1,7 +1,7 @@
 <template>
   <div class="p-5 bg-little-200 dark:bg-prudent-200">
     <div class="md:flex md:justify-between">
-      <CustomInput :modelValue="country" @update:modelValue="searched" />
+      <CustomInput :modelValue="country" @update:modelValue="searchedCountry" />
       <CustomSelect
         :regions="regions"
         :modelValue="continent"
@@ -20,6 +20,7 @@ import Countries from "../components/Countries.vue";
 
 export default {
   name: "Home",
+  props: ["world"],
   components: {
     CustomInput,
     CustomSelect,
@@ -34,11 +35,9 @@ export default {
       countries_perm: [],
     };
   },
-  async created() {
-    let data = await fetch("https://restcountries.com/v2/all");
-    let countries = await data.json();
-    this.countries = countries;
-    this.countries_perm = countries
+  created() {
+    this.countries = this.world;
+    this.countries_perm = this.world;
   },
   computed: {
     regions: function () {
@@ -51,7 +50,7 @@ export default {
     },
   },
   methods: {
-    async searched(inn) {
+    async searchedCountry(inn) {
       let token = "";
       !inn
         ? (token = "https://restcountries.com/v2/all")
