@@ -20,14 +20,8 @@ import Countries from "../components/Countries.vue";
 
 export default {
   name: "Home",
-  props: ["world"],
-  components: {
-    CustomInput,
-    CustomSelect,
-    Countries,
-  },
+  // props: ["world"],
   data() {
-    Countries;
     return {
       country: "",
       countries: [],
@@ -35,9 +29,20 @@ export default {
       countries_perm: [],
     };
   },
-  created() {
-    this.countries = this.world;
-    this.countries_perm = this.world;
+  components: {
+    CustomInput,
+    CustomSelect,
+    Countries,
+  },
+  async created() {
+    try {
+      let data = await fetch("https://restcountries.com/v2/all");
+      let world = await data.json();
+      this.countries = world;
+      this.countries_perm = world;
+    } catch (error) {
+      console.log("error");
+    }
   },
   computed: {
     regions: function () {

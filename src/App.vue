@@ -1,26 +1,30 @@
 <template>
   <div>
     <Header></Header>
-    <router-view :world="mainCountries" />
+    <router-view />
   </div>
 </template>
 
 <script>
 import Header from "./components/Header.vue";
 export default {
+  data() {
+    return {
+      world: [],
+    };
+  },
   components: {
     Header,
   },
-  data() {
-    return {
-      mainCountries: [],
-    };
-  },
-  async created() {
-    let data = await fetch("https://restcountries.com/v2/all");
-    let countries = await data.json();
-    this.mainCountries = countries;
-  },
+  // async created() {
+  //   try {
+  //     let data = await fetch("https://restcountries.com/v2/all");
+  //     let countries = await data.json();
+  //     this.world = await countries;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // },
 };
 </script>
 
