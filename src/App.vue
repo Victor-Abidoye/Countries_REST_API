@@ -16,15 +16,6 @@ export default {
   components: {
     Header,
   },
-  // async created() {
-  //   try {
-  //     let data = await fetch("https://restcountries.com/v2/all");
-  //     let countries = await data.json();
-  //     this.world = await countries;
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // },
 };
 </script>
 
