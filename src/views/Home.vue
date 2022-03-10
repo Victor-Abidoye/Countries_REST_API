@@ -8,7 +8,7 @@
         @update:modelValue="searchedRegion"
       />
     </div>
-    <Countries :countries="countries" />
+    <Countries v-if="active" :countries="countries" />
   </div>
 </template>
 
@@ -23,6 +23,7 @@ export default {
   // props: ["world"],
   data() {
     return {
+      active: false,
       country: "",
       countries: [],
       continent: "",
@@ -40,6 +41,7 @@ export default {
       let world = await data.json();
       this.countries = world;
       this.countries_perm = world;
+      this.active = true;
     } catch (error) {
       console.log("error");
     }

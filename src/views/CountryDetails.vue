@@ -1,5 +1,5 @@
 <template>
-  <div class="p-5 bg-little-200 dark:bg-prudent-200">
+  <div v-if="active" class="p-5 bg-little-200 dark:bg-prudent-200">
     <CustomButton content="Back" />
     <div>
       <div class="w-80 h-56 mx-auto">
@@ -9,6 +9,7 @@
           class="w-full h-full object-cover"
         />
       </div>
+      <button @click="borders()">Test</button>
       <div class="dark:text-white">
         <h3 class="py-6 font-bold text-xl">{{ country.name }}</h3>
         <div>
@@ -48,8 +49,6 @@
           <div class="py-5">
             <h3 class="py-4">Border Countries:</h3>
             <div class="flex justify-between">
-              <!-- <p v-for="result in borders()" :key="result" >{{result[1]}}</p> -->
-
               <CustomButton content="Germany" />
               <CustomButton content="Neitherlands" />
             </div>
@@ -63,34 +62,44 @@
 <script>
 import CustomButton from "../components/CustomButton.vue";
 export default {
-  props: ["world"],
   components: {
     CustomButton,
   },
   data() {
     return {
+      active: false,
       country: {},
     };
   },
   async created() {
-    let data = await fetch("https://restcountries.com/v2/all");
-    let countries = await data.json();
+    try {
+      let data = await fetch("https://restcountries.com/v2/all");
+      let countries = await data.json();
 
-    let holder = countries.filter(
-      (country) => country.numericCode == this.$route.params.id
-    );
-    this.country = holder[0];
-    console.log(this.country.flags);
+      let holder = countries.filter(
+        (country) => country.numericCode == this.$route.params.id
+      );
+      this.active = true;
+      this.country = holder[0];
+    } catch (error) {
+      console.log("here");
+    }
   },
   methods: {
     borders() {
       let holup = this.country.borders.map(async (item) => {
-        let data = await fetch(`https://restcountries.com/v2/name/${item}`);
-        let res = await data.json()
-        return res
+        try {
+          let data = await fetch(`https://restcountries.com/v2/alpha/${item}`);
+          let res = await data.json();
+          return res;
+        } catch (error) {
+          console.log("test");
+        }
       });
-      console.log(holup);
-      return holup
+      for (let item of holup) {
+        console.log(item);
+      }
+      return holup;
     },
   },
 };
