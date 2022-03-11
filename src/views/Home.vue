@@ -20,7 +20,6 @@ import Countries from "../components/Countries.vue";
 
 export default {
   name: "Home",
-  // props: ["world"],
   data() {
     return {
       active: false,
