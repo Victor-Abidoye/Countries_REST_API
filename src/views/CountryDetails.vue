@@ -1,6 +1,6 @@
 <template>
-  <div v-if="active" class="p-5 bg-little-200 dark:bg-prudent-200">
-    <CustomButton content="Back" />
+  <div v-if="active" class="p-5 bg-little-200 dark:bg-prudent-200 h-screen">
+    <!-- <CustomButton content="Back" /> -->
     <div>
       <div class="w-80 h-56 mx-auto">
         <img
@@ -9,7 +9,6 @@
           class="w-full h-full object-cover"
         />
       </div>
-      <button @click="borders()">Test</button>
       <div class="dark:text-white">
         <h3 class="py-6 font-bold text-xl">{{ country.name }}</h3>
         <div>
@@ -46,11 +45,19 @@
               Languages: <span class="font-normal">{{ country.region }}</span>
             </p>
           </div>
-          <div class="py-5">
+          <div class="py-5" v-if="country.borders">
             <h3 class="py-4">Border Countries:</h3>
-            <div class="flex justify-between">
-              <CustomButton content="Germany" />
-              <CustomButton content="Neitherlands" />
+            <div class="flex justify-between gap-3 flex-wrap">
+              <router-link
+                v-for="count in saver"
+                :key="count"
+                :to="{
+                  name: 'CountryDetails',
+                  params: { id: count.id, details: count.name },
+                }"
+              >
+                <CustomButton :content="count.name" />
+              </router-link>
             </div>
           </div>
         </div>
@@ -69,6 +76,7 @@ export default {
     return {
       active: false,
       country: {},
+      saver: [],
     };
   },
   async created() {
@@ -79,14 +87,15 @@ export default {
       let holder = countries.filter(
         (country) => country.numericCode == this.$route.params.id
       );
-      this.active = true;
       this.country = holder[0];
+      this.country.borders ? this.borders() : null;
+      this.active = true;
     } catch (error) {
       console.log("here");
     }
   },
   methods: {
-    borders() {
+    async borders() {
       let holup = this.country.borders.map(async (item) => {
         try {
           let data = await fetch(`https://restcountries.com/v2/alpha/${item}`);
@@ -96,11 +105,22 @@ export default {
           console.log("test");
         }
       });
+      let saver = [];
       for (let item of holup) {
-        console.log(item);
+        let temp = await item;
+        let recent = {
+          name: temp.name,
+          id: temp.numericCode,
+        };
+        saver.push(recent);
       }
-      return holup;
+      this.saver = saver;
+      console.log(this.saver);
+      return saver;
     },
+  },
+  mounted() {
+    this.active = false;
   },
 };
 </script>
