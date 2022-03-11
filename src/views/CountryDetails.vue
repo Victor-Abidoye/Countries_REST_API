@@ -1,17 +1,20 @@
 <template>
-  <div v-if="active" class="p-5 bg-little-200 dark:bg-prudent-200 h-screen">
+  <div
+    v-if="active"
+    class="p-5 bg-little-200 dark:bg-prudent-200 h-screen md:px-10"
+  >
     <!-- <CustomButton content="Back" /> -->
-    <div>
-      <div class="w-80 h-56 mx-auto">
+    <div class="lg:grid lg:grid-cols-2 lg:gap-20">
+      <div class="w-80 h-56 mx-auto lg:w-full lg:h-full">
         <img
           :src="country.flags.svg"
           alt=""
-          class="w-full h-full object-cover"
+          class="w-full h-full object-cover lg:object-scale-down"
         />
       </div>
       <div class="dark:text-white">
         <h3 class="py-6 font-bold text-xl">{{ country.name }}</h3>
-        <div>
+        <div class="md:grid md:grid-cols-2">
           <div class="py-5">
             <p class="font-medium text-sm py-1">
               Native Name:
@@ -45,7 +48,7 @@
               Languages: <span class="font-normal">{{ country.region }}</span>
             </p>
           </div>
-          <div class="py-5" v-if="country.borders">
+          <div class="py-5 md:col-span-2" v-if="country.borders">
             <h3 class="py-4">Border Countries:</h3>
             <div class="flex gap-4 flex-wrap">
               <CustomButton v-if="!saver.length" content="loading..." />
