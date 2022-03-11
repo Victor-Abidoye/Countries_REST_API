@@ -47,8 +47,10 @@
           </div>
           <div class="py-5" v-if="country.borders">
             <h3 class="py-4">Border Countries:</h3>
-            <div class="flex justify-between gap-3 flex-wrap">
+            <div class="flex gap-4 flex-wrap">
+              <CustomButton v-if="!saver.length" content="loading..." />
               <router-link
+                v-else
                 v-for="count in saver"
                 :key="count"
                 :to="{
