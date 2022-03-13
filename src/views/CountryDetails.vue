@@ -26,7 +26,11 @@
             </p>
             <p class="font-medium text-sm py-1">
               Population:
-              <span class="font-normal">{{ country.population }}</span>
+              <span class="font-normal">{{
+                country.population
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              }}</span>
             </p>
             <p class="font-medium text-sm py-1">
               Region: <span class="font-normal">{{ country.region }}</span>
@@ -46,7 +50,7 @@
             </p>
             <p class="font-medium text-sm py-1">
               Currencies:
-              <span class="font-normal">{{ country.currencies.name }}</span>
+              <span class="font-normal">{{ country.currencies[0].name }}</span>
             </p>
             <p class="font-medium text-sm py-1">
               Languages: <span class="font-normal">{{ country.region }}</span>
@@ -124,7 +128,6 @@ export default {
         saver.push(recent);
       }
       this.saver = saver;
-      console.log(this.saver);
       return saver;
     },
   },

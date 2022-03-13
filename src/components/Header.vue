@@ -1,5 +1,7 @@
 <template>
-  <div class="flex justify-between p-5 bg-little-100 dark:bg-prudent-100">
+  <div
+    class="flex justify-between p-5 md:px-14 bg-little-100 dark:bg-prudent-100"
+  >
     <h1 class="text-black dark:text-little-100 md:text-xl font-bold">
       Where in the World?
     </h1>

@@ -19,7 +19,10 @@
       <div class="px-5 text-black dark:text-white">
         <h2 class="font-bold text-center text-lg py-3">{{ details.name }}</h2>
         <p class="font-medium text-sm py-1">
-          Population: <span class="font-normal">{{ details.population }}</span>
+          Population:
+          <span class="font-normal">{{
+            details.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+          }}</span>
         </p>
         <p class="font-medium text-sm py-1">
           Region: <span class="font-normal">{{ details.region }}</span>
