@@ -4,6 +4,7 @@
       name: 'CountryDetails',
       params: { id: details.numericCode, details: details.name },
     }"
+    class="transform hover:scale-105 duration-300"
   >
     <div
       class="shadow-md items-center max-w-xs w-64 h-80 bg-little-100 dark:bg-prudent-100 rounded-md"
@@ -12,7 +13,7 @@
         <img
           :src="details.flags.svg"
           alt=""
-          class="w-full h-full object-cover"
+          class="w-full h-full object-cover rounded-t-md"
         />
       </div>
       <div class="px-5 text-black dark:text-white">

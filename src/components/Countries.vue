@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex gap-10 flex-wrap md:justify-between py-8 justify-center"
+    class="grid md:grid-cols-count2 lg:grid-cols-count3 xl:grid-cols-count4 gap-10 pt-8 md:justify-between md:p-0"
     v-if="countries.status !== 404"
   >
     <Country

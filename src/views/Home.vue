@@ -1,5 +1,5 @@
 <template>
-  <div class="p-5 bg-little-200 dark:bg-prudent-200">
+  <div class="p-5 bg-little-200 dark:bg-prudent-200 md:px-14">
     <div class="md:flex md:justify-between">
       <CustomInput :modelValue="country" @update:modelValue="searchedCountry" />
       <CustomSelect

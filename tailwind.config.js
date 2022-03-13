@@ -13,6 +13,11 @@ module.exports = {
           200: "#FAFAFA",
         },
       },
+      gridTemplateColumns: {
+        count4: "repeat(4, max-content)",
+        count3: "repeat(3, max-content)",
+        count2: "repeat(2, max-content)",
+      },
     },
   },
   variants: {
