@@ -14,6 +14,10 @@
     </div>
     <Countries :countries="filteredCountries" />
   </div>
+  <Error
+    v-if="!filteredCountries.length"
+    content="A Country with this name does not exist"
+  />
 </template>
 
 <script>
@@ -21,6 +25,7 @@
 import CountryInput from "@/components/CountryInput.vue";
 import CountrySelect from "@/components/CountrySelect.vue";
 import Countries from "@/components/Countries.vue";
+import Error from "@/components/Error.vue";
 
 export default {
   name: "Home",
@@ -37,6 +42,7 @@ export default {
     CountryInput,
     CountrySelect,
     Countries,
+    Error,
   },
   methods: {
     searching(toSearchValue, toSearchType) {
