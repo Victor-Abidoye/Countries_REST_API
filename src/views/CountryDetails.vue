@@ -3,10 +3,8 @@
     v-if="active"
     class="p-5 bg-little-200 dark:bg-prudent-200 h-screen md:px-10"
   >
-    <custom-button
-      content="Back"
-      class="my-5"
-      @click="$router.go(-1)"
+    <custom-button content="Back" class="my-5" @click="$router.go(-1)"
+      ><i class="fa-solid fa-arrow-left-long"></i
     ></custom-button>
     <div class="lg:grid lg:grid-cols-2 lg:gap-20">
       <div class="w-80 h-56 mx-auto lg:w-full lg:h-full">

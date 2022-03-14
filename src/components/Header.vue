@@ -6,7 +6,7 @@
       Where in the World?
     </h1>
     <p @click="toggleMode" class="text-black dark:text-little-100">
-      <i class="fa-light fa-moon"></i> Dark Mode
+      <font-awesome-icon icon="moon" /> Dark Mode
     </p>
   </div>
 </template>

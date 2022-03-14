@@ -1,6 +1,8 @@
 <template>
-  <button class="h-7 px-6 text-xs font-light bg-little-100 dark:bg-prudent-100 dark:text-white shadow-md">
-    {{ content }}
+  <button
+    class="h-7 px-6 text-xs font-light bg-little-100 dark:bg-prudent-100 dark:text-white shadow-md"
+  >
+    <slot></slot> {{ content }}
   </button>
 </template>
 
