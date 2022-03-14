@@ -1,7 +1,6 @@
 <template>
   <div
     class="grid justify-center md:grid-cols-count2 lg:grid-cols-count3 xl:grid-cols-count4 gap-10 pt-8 md:justify-between md:p-0"
-    v-if="countries.status !== 404"
   >
     <Country
       v-for="(country, index) in countries"

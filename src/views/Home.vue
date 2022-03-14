@@ -1,17 +1,18 @@
 <template>
-  <div class="p-5 bg-little-200 dark:bg-prudent-200 md:px-14">
+  <div
+    class="p-5 bg-little-200 dark:bg-prudent-200 md:px-14"
+    v-if="world.length"
+  >
     <div class="md:flex md:justify-between">
-      <CountryInput
-        :modelValue="country"
-        @update:modelValue="searchedCountry"
-      />
+      <CountryInput :modelValue="country" @update:modelValue="searching" />
+      <p>{{ country }}</p>
       <CountrySelect
         :regions="regions"
         :modelValue="continent"
-        @update:modelValue="searchedRegion"
+        @update:modelValue="searching"
       />
     </div>
-    <Countries v-if="active" :countries="countries" />
+    <Countries :countries="filteredCountries" />
   </div>
 </template>
 
@@ -23,13 +24,13 @@ import Countries from "@/components/Countries.vue";
 
 export default {
   name: "Home",
+  props: ["world"],
   data() {
     return {
-      active: false,
       country: "",
-      countries: [],
       continent: "",
-      countries_perm: [],
+      searchInput: "",
+      searchType: "",
     };
   },
   components: {
@@ -37,49 +38,47 @@ export default {
     CountrySelect,
     Countries,
   },
-  async created() {
-    try {
-      let data = await fetch("https://restcountries.com/v2/all");
-      let world = await data.json();
-      this.countries = world;
-      this.countries_perm = world;
-      this.active = true;
-    } catch (error) {
-      console.log("error");
-    }
+  methods: {
+    searching(toSearchValue, toSearchType) {
+      this.searchInput = toSearchValue;
+      this.searchType = toSearchType;
+    },
+    searchedRegion(reg) {
+      let regions = [];
+      if (reg == "All Region") {
+        regions = this.world;
+      } else {
+        regions = this.world.filter((coun) => {
+          return coun.region == reg;
+        });
+      }
+      return regions;
+    },
   },
   computed: {
     regions: function () {
       let set1 = new Set();
       set1.add("All Region");
-      for (let i in this.countries_perm) {
-        set1.add(this.countries_perm[i].region);
+      for (let i in this.world) {
+        set1.add(this.world[i].region);
       }
       return set1;
     },
-  },
-  methods: {
-    async searchedCountry(inn) {
-      let token = "";
-      !inn
-        ? (token = "https://restcountries.com/v2/all")
-        : (token = `https://restcountries.com/v2/name/${inn}`);
-      try {
-        let data = await fetch(token);
-        let res = await data.json();
-        this.countries = res;
-      } catch (err) {
-        console.log(err);
-      }
-    },
-    searchedRegion(reg) {
-      let res = this.countries_perm;
-      if (reg == "All Region") {
-        this.countries = res;
+    filteredCountries: function () {
+      if (this.searchType == "region") {
+        return this.searchedRegion(this.searchInput);
       } else {
-        this.countries = res.filter((curr) => {
-          return curr.region == reg;
-        });
+        let countryResult;
+        if (this.searchInput.length) {
+          countryResult = this.world.filter((country) => {
+            return country.name
+              .toLowerCase()
+              .includes(this.searchInput.toLowerCase());
+          });
+        } else {
+          countryResult = this.world;
+        }
+        return countryResult;
       }
     },
   },

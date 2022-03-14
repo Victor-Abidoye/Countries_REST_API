@@ -5,7 +5,10 @@
     <h1 class="text-black dark:text-little-100 md:text-xl font-bold">
       Where in the World?
     </h1>
-    <p @click="toggleMode" class="text-black dark:text-little-100">
+    <p
+      @click="toggleMode"
+      class="text-black dark:text-little-100 cursor-pointer"
+    >
       <font-awesome-icon icon="moon" /> Dark Mode
     </p>
   </div>

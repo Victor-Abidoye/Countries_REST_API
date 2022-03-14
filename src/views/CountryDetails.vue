@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="active"
+    v-if="world.length"
     class="p-5 pt-0 bg-little-200 dark:bg-prudent-200 h-screen md:px-10"
   >
     <custom-button content="Back" class="my-14" @click="$router.go(-1)"
@@ -83,54 +83,39 @@ export default {
   components: {
     CustomButton,
   },
+  props: ["world"],
   data() {
     return {
-      active: false,
       country: {},
       saver: [],
     };
   },
   async created() {
-    try {
-      let data = await fetch("https://restcountries.com/v2/all");
-      let countries = await data.json();
-
-      let holder = countries.filter(
-        (country) => country.numericCode == this.$route.params.id
-      );
-      this.country = holder[0];
-      this.country.borders ? this.borders() : null;
-      this.active = true;
-    } catch (error) {
-      console.log("here");
-    }
+    let holder = this.world.filter(
+      (country) => country.numericCode == this.$route.params.id
+    );
+    this.country = holder[0];
+    this.country.borders ? this.borders() : null;
   },
   methods: {
-    async borders() {
-      let holup = this.country.borders.map(async (item) => {
-        try {
-          let data = await fetch(`https://restcountries.com/v2/alpha/${item}`);
-          let res = await data.json();
-          return res;
-        } catch (error) {
-          console.log("test");
-        }
+    borders() {
+      let holup = this.country.borders.map((item) => {
+        let borderedCountry = this.world.filter((count) => {
+          return count.alpha3Code == item;
+        });
+        return borderedCountry;
       });
       let saver = [];
       for (let item of holup) {
-        let temp = await item;
+        let temp = item;
         let recent = {
-          name: temp.name,
-          id: temp.numericCode,
+          name: temp[0].name,
+          id: temp[0].numericCode,
         };
         saver.push(recent);
       }
       this.saver = saver;
-      return saver;
     },
-  },
-  mounted() {
-    this.active = false;
   },
 };
 </script>
