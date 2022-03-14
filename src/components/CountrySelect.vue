@@ -13,6 +13,7 @@
 
 <script>
 export default {
+  name: "CountrySelect",
   props: ["modelValue", "regions"],
   emits: ["update:modelValue"],
 };

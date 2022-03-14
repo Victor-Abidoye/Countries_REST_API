@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "CustomInput",
+  name: "CountryInput",
   props: ["modelValue"],
   emits: ["update:modelValue"],
 };

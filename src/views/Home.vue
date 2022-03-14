@@ -1,8 +1,11 @@
 <template>
   <div class="p-5 bg-little-200 dark:bg-prudent-200 md:px-14">
     <div class="md:flex md:justify-between">
-      <CustomInput :modelValue="country" @update:modelValue="searchedCountry" />
-      <CustomSelect
+      <CountryInput
+        :modelValue="country"
+        @update:modelValue="searchedCountry"
+      />
+      <CountrySelect
         :regions="regions"
         :modelValue="continent"
         @update:modelValue="searchedRegion"
@@ -14,9 +17,9 @@
 
 <script>
 // @ is an alias to /src
-import CustomInput from "@/components/CustomInput.vue";
-import CustomSelect from "@/components/CustomSelect.vue";
-import Countries from "../components/Countries.vue";
+import CountryInput from "@/components/CountryInput.vue";
+import CountrySelect from "@/components/CountrySelect.vue";
+import Countries from "@/components/Countries.vue";
 
 export default {
   name: "Home",
@@ -30,8 +33,8 @@ export default {
     };
   },
   components: {
-    CustomInput,
-    CustomSelect,
+    CountryInput,
+    CountrySelect,
     Countries,
   },
   async created() {
