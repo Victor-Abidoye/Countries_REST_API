@@ -25,9 +25,7 @@
             <p class="font-medium text-sm py-1">
               Population:
               <span class="font-normal">{{
-                country.population
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                Number(country.population).toLocaleString()
               }}</span>
             </p>
             <p class="font-medium text-sm py-1">
