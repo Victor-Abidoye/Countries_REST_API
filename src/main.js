@@ -12,8 +12,10 @@ library.add(faMoon, faArrowLeftLong, faTriangleExclamation);
 
 import router from "./router";
 import "./assets/tailwind.css";
+import { createPinia } from "pinia";
 
 createApp(App)
   .component("font-awesome-icon", FontAwesomeIcon)
+  .use(createPinia())
   .use(router)
   .mount("#app");
