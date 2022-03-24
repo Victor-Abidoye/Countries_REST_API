@@ -26,16 +26,18 @@ import CountryInput from "@/components/CountryInput.vue";
 import CountrySelect from "@/components/CountrySelect.vue";
 import Countries from "@/components/Countries.vue";
 import Error from "@/components/Error.vue";
+import { availableCountries } from "../store/availableCountries";
 
 export default {
   name: "Home",
-  props: ["world"],
+  // props: ["world"],
   data() {
     return {
       country: "",
       continent: "",
       searchInput: "",
       searchType: "",
+      world: [],
     };
   },
   components: {
@@ -43,6 +45,10 @@ export default {
     CountrySelect,
     Countries,
     Error,
+  },
+  created() {
+    const store = availableCountries();
+    this.world = store.world;
   },
   methods: {
     searching(toSearchValue, toSearchType) {
