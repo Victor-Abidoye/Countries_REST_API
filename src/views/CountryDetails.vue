@@ -77,18 +77,22 @@
 
 <script>
 import CustomButton from "../components/CustomButton.vue";
+import { availableCountries } from "../store/availableCountries";
 export default {
   components: {
     CustomButton,
   },
-  props: ["world"],
+  // props: ["world"],
   data() {
     return {
       country: {},
       saver: [],
+      world: [],
     };
   },
   async created() {
+    const store = availableCountries();
+    this.world = store.world;
     let holder = this.world.filter(
       (country) => country.numericCode == this.$route.params.id
     );
