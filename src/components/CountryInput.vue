@@ -8,12 +8,20 @@
   />
 </template>
 
-<script>
+<!--COMPOSITION API-->
+<script setup>
+import { defineProps, defineEmits } from "vue";
+defineProps(["modelValue"]);
+defineEmits(["update:modelValue"]);
+</script>
+
+<!--OPTIONS API-->
+<!-- <script>
 export default {
   name: "CountryInput",
   props: ["modelValue"],
   emits: ["update:modelValue"],
 };
-</script>
+</script> -->
 
 <style></style>

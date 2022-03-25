@@ -11,12 +11,20 @@
   </select>
 </template>
 
-<script>
+<!--COMPOSITION API-->
+<script setup>
+import { defineProps, defineEmits } from "vue";
+defineProps(["modelValue", "regions"]);
+defineEmits(["update:modelValue"]);
+</script>
+
+<!--OPTIONS API-->
+<!-- <script>
 export default {
   name: "CountrySelect",
   props: ["modelValue", "regions"],
   emits: ["update:modelValue"],
 };
-</script>
+</script> -->
 
 <style></style>
