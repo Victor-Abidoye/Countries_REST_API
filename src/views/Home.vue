@@ -1,7 +1,7 @@
 <template>
   <div
     class="p-5 bg-little-200 dark:bg-prudent-200 md:px-14"
-    v-if="world.length"
+    v-if="store.world.length"
   >
     <div class="md:flex md:justify-between">
       <CountryInput :modelValue="country" @update:modelValue="searching" />
@@ -20,7 +20,72 @@
   />
 </template>
 
-<script>
+<!--COMPOSITION API-->
+<script setup>
+// @ is an alias to /src
+import CountryInput from "@/components/CountryInput.vue";
+import CountrySelect from "@/components/CountrySelect.vue";
+import Countries from "@/components/Countries.vue";
+import Error from "@/components/Error.vue";
+import { availableCountries } from "../store/availableCountries";
+import { ref, onBeforeMount, computed } from "vue";
+
+const country = ref("");
+const continent = ref("");
+const searchInput = ref("");
+const searchType = ref("");
+const store = ref(null);
+
+onBeforeMount(() => {
+  store.value = availableCountries();
+});
+
+function searching(toSearchValue, toSearchType) {
+  searchInput.value = toSearchValue;
+  searchType.value = toSearchType;
+}
+function searchedRegion(reg) {
+  let regions = [];
+  if (reg == "All Region") {
+    regions = store.value.world;
+  } else {
+    regions = store.value.world.filter((coun) => {
+      return coun.region == reg;
+    });
+  }
+  return regions;
+}
+
+const regions = computed(() => {
+  let set1 = new Set();
+  set1.add("All Region");
+  for (let i in store.value.world) {
+    set1.add(store.value.world[i].region);
+  }
+  return set1;
+});
+
+const filteredCountries = computed(() => {
+  if (searchType.value == "region") {
+    return searchedRegion(searchInput.value);
+  } else {
+    let countryResult;
+    if (searchInput.value.length) {
+      countryResult = store.value.valueworld.filter((country) => {
+        return country.name
+          .toLowerCase()
+          .includes(this.searchInput.toLowerCase());
+      });
+    } else {
+      countryResult = store.value.world;
+    }
+    return countryResult;
+  }
+});
+</script>
+
+<!--OPTIONS API-->
+<!-- <script>
 // @ is an alias to /src
 import CountryInput from "@/components/CountryInput.vue";
 import CountrySelect from "@/components/CountrySelect.vue";
@@ -94,4 +159,4 @@ export default {
     },
   },
 };
-</script>
+</script> -->
