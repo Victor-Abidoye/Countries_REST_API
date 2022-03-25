@@ -35,10 +35,18 @@
   </router-link>
 </template>
 
-<script>
+<!--COMPOSITION API-->
+<script setup>
+import { defineProps } from "vue";
+
+defineProps(["details"]);
+</script>
+
+<!--OPTIONS API-->
+<!-- <script>
 export default {
   props: ["details"],
 };
-</script>
+</script> -->
 
 <style></style>

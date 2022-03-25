@@ -18,10 +18,10 @@ defineProps(["content"]);
 </script>
 
 <!--OPTIONS API-->
-<script>
+<!-- <script>
 export default {
   props: ["content"],
 };
-</script>
+</script> -->
 
 <style></style>

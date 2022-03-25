@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="world.length"
+    v-if="store.world.length"
     class="p-5 pt-0 bg-little-200 dark:bg-prudent-200 h-screen md:px-10"
   >
     <custom-button content="Back" class="my-14" @click="$router.go(-1)"
@@ -75,7 +75,46 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, onBeforeMount } from "vue";
+import { useRoute } from "vue-router";
+import CustomButton from "../components/CustomButton.vue";
+import { availableCountries } from "../store/availableCountries";
+
+const country = ref({});
+const saver = ref([]);
+const store = ref([]);
+
+onBeforeMount(() => {
+  store.value = availableCountries();
+  let route = useRoute();
+  let holder = store.value.world.filter(
+    (country) => country.numericCode == route.params.id
+  );
+  country.value = holder[0];
+  country.value.borders ? borders() : null;
+});
+
+function borders() {
+  let holup = country.value.borders.map((item) => {
+    let borderedCountry = store.value.world.filter((count) => {
+      return count.alpha3Code == item;
+    });
+    return borderedCountry;
+  });
+  let neighbourCountries = [];
+  for (let item of holup) {
+    let temp = item;
+    let recent = {
+      name: temp[0].name,
+      id: temp[0].numericCode,
+    };
+    neighbourCountries.push(recent);
+  }
+  saver.value = neighbourCountries;
+}
+</script>
+<!-- <script>
 import CustomButton from "../components/CustomButton.vue";
 import { availableCountries } from "../store/availableCountries";
 export default {
@@ -120,6 +159,6 @@ export default {
     },
   },
 };
-</script>
+</script> -->
 
 <style></style>

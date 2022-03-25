@@ -6,10 +6,17 @@
   </button>
 </template>
 
-<script>
+<!--COMPOSITION API-->
+<script setup>
+import { defineProps } from "vue";
+defineProps(["content"]);
+</script>
+
+<!--OPTIONS API-->
+<!-- <script>
 export default {
   props: ["content"],
 };
-</script>
+</script> -->
 
 <style></style>

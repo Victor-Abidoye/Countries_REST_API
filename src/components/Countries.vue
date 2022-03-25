@@ -10,12 +10,21 @@
   </div>
 </template>
 
-<script>
+<!--COMPOSITION API-->
+<script setup>
+import Country from "./Country.vue";
+import { defineProps } from "vue";
+
+defineProps(["countries"]);
+</script>
+
+<!--OPTIONS API-->
+<!-- <script>
 import Country from "./Country.vue";
 export default {
   props: ["countries"],
   components: { Country },
 };
-</script>
+</script> -->
 
 <style></style>
