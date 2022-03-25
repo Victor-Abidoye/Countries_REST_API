@@ -30,7 +30,6 @@ import { availableCountries } from "../store/availableCountries";
 
 export default {
   name: "Home",
-  // props: ["world"],
   data() {
     return {
       country: "",
