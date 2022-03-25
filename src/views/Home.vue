@@ -71,10 +71,10 @@ const filteredCountries = computed(() => {
   } else {
     let countryResult;
     if (searchInput.value.length) {
-      countryResult = store.value.valueworld.filter((country) => {
+      countryResult = store.value.world.filter((country) => {
         return country.name
           .toLowerCase()
-          .includes(this.searchInput.toLowerCase());
+          .includes(searchInput.value.toLowerCase());
       });
     } else {
       countryResult = store.value.world;

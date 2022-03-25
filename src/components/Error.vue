@@ -14,7 +14,7 @@
 <!--COMPOSITION API-->
 <script setup>
 import { defineProps } from "vue";
-defineProps("content");
+defineProps(["content"]);
 </script>
 
 <!--OPTIONS API-->

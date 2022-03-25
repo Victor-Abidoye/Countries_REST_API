@@ -14,21 +14,16 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "Header",
-  methods: {
-    toggleMode() {
-      if (localStorage.theme == "light") {
-        localStorage.theme = "dark";
-        document.documentElement.classList.add("dark");
-      } else {
-        localStorage.theme = "light";
-        document.documentElement.classList.remove("dark");
-      }
-    },
-  },
-};
+<script setup>
+function toggleMode() {
+  if (localStorage.theme == "light") {
+    localStorage.theme = "dark";
+    document.documentElement.classList.add("dark");
+  } else {
+    localStorage.theme = "light";
+    document.documentElement.classList.remove("dark");
+  }
+}
 </script>
 
 <style></style>
