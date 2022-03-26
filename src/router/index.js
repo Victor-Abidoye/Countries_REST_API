@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import CountryDetails from "../views/CountryDetails";
+import NotFound from "../views/NotFound";
 
 const routes = [
   {
@@ -13,6 +14,11 @@ const routes = [
     name: "CountryDetails",
     component: CountryDetails,
     props: true,
+  },
+  {
+    path: "/:catchAll(.*)",
+    name: "NotFound",
+    component: NotFound,
   },
 ];
 
