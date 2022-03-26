@@ -77,9 +77,10 @@
 
 <script setup>
 import { ref, onBeforeMount } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import CustomButton from "../components/CustomButton.vue";
 import { availableCountries } from "../store/availableCountries";
+// import NotFound from "./NotFound.vue";
 
 const country = ref({});
 const saver = ref([]);
@@ -91,8 +92,13 @@ onBeforeMount(() => {
   let holder = store.value.world.filter(
     (country) => country.numericCode == route.params.id
   );
-  country.value = holder[0];
-  country.value.borders ? borders() : null;
+  if (holder.length) {
+    country.value = holder[0];
+    country.value.borders ? borders() : null;
+  } else {
+    const router = useRouter();
+    router.push({ path: "/:catchAll(.*)" });
+  }
 });
 
 function borders() {
