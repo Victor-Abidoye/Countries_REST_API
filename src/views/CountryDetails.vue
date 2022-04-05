@@ -75,12 +75,12 @@
   </div>
 </template>
 
+<!--COMPOSITION API-->
 <script setup>
 import { ref, onBeforeMount } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import CustomButton from "../components/CustomButton.vue";
 import { availableCountries } from "../store/availableCountries";
-// import NotFound from "./NotFound.vue";
 
 const country = ref({});
 const saver = ref([]);
@@ -97,7 +97,7 @@ onBeforeMount(() => {
     country.value.borders ? borders() : null;
   } else {
     const router = useRouter();
-    router.push({ name: "Home"});
+    router.push({ name: "Home" });
   }
 });
 
@@ -120,6 +120,8 @@ function borders() {
   saver.value = neighbourCountries;
 }
 </script>
+
+<!--COMPOSITION API-->
 <!-- <script>
 import CustomButton from "../components/CustomButton.vue";
 import { availableCountries } from "../store/availableCountries";
