@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-little-200 dark:bg-prudent-200 h-screen">
+  <div class="bg-little-200 dark:bg-prudent-200 h-screen relative">
     <Header></Header>
     <Error
       v-if="store.presentError"

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="p-5 bg-little-200 dark:bg-prudent-200 md:px-14"
+    class="p-5 bg-little-200 dark:bg-prudent-200 md:px-14 mt-20"
     v-if="store.world.length"
   >
     <div class="md:flex md:justify-between">

@@ -97,7 +97,7 @@ onBeforeMount(() => {
     country.value.borders ? borders() : null;
   } else {
     const router = useRouter();
-    router.push({ path: "/:catchAll(.*)" });
+    router.push({ name: "Home"});
   }
 });
 

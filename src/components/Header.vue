@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex sticky top-0 justify-between p-5 md:px-14 bg-little-100 dark:bg-prudent-100"
+    class="flex w-full fixed top-0 justify-between p-5 md:px-14 bg-little-100 dark:bg-prudent-100 z-10"
   >
     <router-link :to="{ name: 'Home' }">
       <h1
